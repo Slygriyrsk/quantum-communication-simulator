@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Communication Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Quantum Communication Simulator</h1>
+            <p>Visualizing entanglement between quantum nodes with noise and purification</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Quantum Network Visualization -->
+            <div class="visualization-container">
+                <h2>Quantum Network</h2>
+                <div class="canvas-container">
+                    <canvas id="quantum-network"></canvas>
+                    <div id="status-message" class="status-message">Adjust parameters and start the simulation</div>
+                </div>
+            </div>
+
+            <!-- Simulation Controls -->
+            <div class="controls-container">
+                <h2>Simulation Controls</h2>
+                <div class="control-group">
+                    <label for="noise-level">Noise Level: <span id="noise-value">0.20</span></label>
+                    <input type="range" id="noise-level" min="0.05" max="0.5" step="0.01" value="0.2">
+                </div>
+
+                <div class="control-group">
+                    <label for="purification">Purification:</label>
+                    <div class="toggle-container">
+                        <input type="checkbox" id="purification" class="toggle">
+                        <label for="purification" class="toggle-label"></label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="simulation-speed">Simulation Speed: <span id="speed-value">1.0</span>x</label>
+                    <input type="range" id="simulation-speed" min="0.5" max="3" step="0.1" value="1">
+                </div>
+
+                <div class="button-group">
+                    <button id="start-btn" class="primary-btn">Start Simulation</button>
+                    <button id="pause-btn" class="secondary-btn" disabled>Pause</button>
+                    <button id="reset-btn" class="danger-btn" disabled>Reset</button>
+                </div>
+
+                <!-- Advanced Controls Section -->
+                <div class="advanced-controls">
+                    <h3>Advanced Settings</h3>
+                    <div class="control-row">
+                        <div class="control-col">
+                            <label for="entanglement-type">Entanglement Type:</label>
+                            <div class="select-container">
+                                <select id="entanglement-type" class="custom-select">
+                                    <option value="bell">Bell State</option>
+                                    <option value="ghz">GHZ State</option>
+                                    <option value="w">W State</option>
+                                </select>
+                                <div class="select-arrow">▼</div>
+                            </div>
+                        </div>
+                        <div class="control-col">
+                            <label for="error-model">Error Model:</label>
+                            <div class="select-container">
+                                <select id="error-model" class="custom-select">
+                                    <option value="depolarizing">Depolarizing</option>
+                                    <option value="amplitude">Amplitude Damping</option>
+                                    <option value="phase">Phase Damping</option>
+                                </select>
+                                <div class="select-arrow">▼</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Node Configuration Controls -->
+                    <div class="control-row">
+                        <div class="control-col">
+                            <label for="node-count">Number of Nodes:</label>
+                            <div class="select-container">
+                                <select id="node-count" class="custom-select">
+                                    <option value="2">2 Nodes</option>
+                                    <option value="3">3 Nodes</option>
+                                    <option value="4">4 Nodes</option>
+                                    <option value="5">5 Nodes</option>
+                                    <option value="6">6 Nodes</option>
+                                    <option value="8">8 Nodes</option>
+                                    <option value="10">10 Nodes</option>
+                                </select>
+                                <div class="select-arrow">▼</div>
+                            </div>
+                        </div>
+                        <div class="control-col">
+                            <label for="network-topology">Network Topology:</label>
+                            <div class="select-container">
+                                <select id="network-topology" class="custom-select">
+                                    <option value="linear">Linear Chain</option>
+                                    <option value="star">Star Network</option>
+                                    <option value="ring">Ring Network</option>
+                                    <option value="mesh">Fully Connected Mesh</option>
+                                </select>
+                                <div class="select-arrow">▼</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-row">
+                        <button id="export-btn" class="action-btn btn-cyan">
+                            <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Export Data
+                        </button>
+                        <button id="settings-btn" class="action-btn btn-yellow">
+                            <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path
+                                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                                </path>
+                            </svg>
+                            Settings
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="circuit">Quantum Circuit</button>
+                <button class="tab-btn" data-tab="fidelity">Fidelity Chart</button>
+                <button class="tab-btn" data-tab="results">Results</button>
+            </div>
+
+            <div class="tab-content">
+                <!-- Quantum Circuit Tab -->
+                <div id="circuit" class="tab-pane active">
+                    <h3>Quantum Circuit Visualization</h3>
+                    <div class="canvas-container quantum-circuit-container">
+                        <canvas id="quantum-circuit"></canvas>
+                    </div>
+                    <div class="chart-controls">
+                        <button class="chart-btn active" id="circuit-view-standard">Standard View</button>
+                        <button class="chart-btn" id="circuit-view-detailed">Detailed View</button>
+                        <button class="chart-btn" id="circuit-view-bloch">Bloch Sphere</button>
+                    </div>
+                    <p class="description" id="circuit-description">
+                        Start the simulation to see the quantum circuit in action.
+                    </p>
+                </div>
+
+                <!-- Fidelity Chart Tab -->
+                <div id="fidelity" class="tab-pane">
+                    <h3>Fidelity Over Time</h3>
+                    <div class="fidelity-chart-container">
+                        <canvas id="fidelity-chart"></canvas>
+                        <div id="chart-tooltip" class="chart-tooltip">
+                            <div class="chart-tooltip-title">Step 5</div>
+                            <div class="chart-tooltip-value">
+                                <span>Fidelity:</span>
+                                <span>0.85</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-controls">
+                        <button class="chart-btn active" id="chart-view-line">Line Chart</button>
+                        <button class="chart-btn" id="chart-view-bar">Bar Chart</button>
+                        <button class="chart-btn" id="chart-view-area">Area Chart</button>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: var(--accent-blue);"></div>
+                            <span>Fidelity</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: var(--accent-green);"></div>
+                            <span>Threshold (0.8)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: var(--accent-red);"></div>
+                            <span>Error Rate</span>
+                        </div>
+                    </div>
+                    <p class="description">
+                        The chart shows how quantum fidelity changes during the simulation.
+                        Higher fidelity (closer to 1.0) indicates better quantum state preservation.
+                    </p>
+                </div>
+
+                <!-- Results Tab -->
+                <div id="results" class="tab-pane">
+                    <div id="results-container" class="results-container">
+                        <div class="no-results">
+                            <div class="icon warning-icon"></div>
+                            <h3>No Results Available</h3>
+                            <p>Run the simulation to see detailed results and statistics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Quantum Communication Simulator &copy; 2025</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
