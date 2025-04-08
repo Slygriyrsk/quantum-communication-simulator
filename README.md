@@ -134,7 +134,7 @@ python server.py
 
 3\. Open your browser and navigate to: `http://localhost:5000`
 
-4\. Alternatively, visit the live demo at: [https://Slygriyrsk.github.io/quantum-communication-simulator](https://Slygriyrsk.github.io/quantum-communication-simulator)
+4\. Alternatively, visit the live demo at: [https://Slygriyrsk.github.io/quantum-communication-simulator](https://devrizz.github.io/quantum-communication-simulator/)
 
 ---
 
@@ -241,7 +241,7 @@ python -m http.server
 
 2\. Or simply open `index.html` directly in your browser
 
-3\. Alternatively, visit the live demo at: [https://yourusername.github.io/quantum-communication-simulator](https://Slygriyrsk.github.io/quantum-communication-simulator)
+3\. Alternatively, visit the live demo at: [https://Slygriyrsk.github.io/quantum-communication-simulator](https://devrizz.github.io/quantum-communication-simulator/)
 
 ---
 
